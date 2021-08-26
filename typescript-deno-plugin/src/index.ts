@@ -176,6 +176,7 @@ class Plugin implements ts.server.PluginModule {
       0,
       undefined,
     );
+    const getFileReferences = callIfDisabled("getFileReferences", 0, []);
     const getEditsForFileRename = callIfDisabled(
       "getEditsForFileRename",
       0,
@@ -206,6 +207,11 @@ class Plugin implements ts.server.PluginModule {
       0,
       [],
     );
+    const getNavigationTree = callIfDisabled(
+      "getNavigationTree",
+      0,
+      undefined as any,
+    );
     const getOutliningSpans = callIfDisabled("getOutliningSpans", 0, []);
     const getQuickInfoAtPosition = callIfDisabled(
       "getQuickInfoAtPosition",
@@ -222,8 +228,33 @@ class Plugin implements ts.server.PluginModule {
       0,
       [],
     );
+    const getJsxClosingTagAtPosition = callIfDisabled(
+      "getJsxClosingTagAtPosition",
+      0,
+      undefined,
+    );
+    const getSyntacticClassifications = callIfDisabled(
+      "getSyntacticClassifications",
+      0,
+      [],
+    ) as ts.LanguageService["getSyntacticClassifications"];
+    const getSemanticClassifications = callIfDisabled(
+      "getSemanticClassifications",
+      0,
+      [],
+    ) as ts.LanguageService["getSemanticClassifications"];
+    const getEncodedSyntacticClassifications = callIfDisabled(
+      "getEncodedSyntacticClassifications",
+      0,
+      { spans: [], endOfLineState: 0 },
+    );
     const getSignatureHelpItems = callIfDisabled(
       "getSignatureHelpItems",
+      0,
+      undefined,
+    );
+    const getSpanOfEnclosingComment = callIfDisabled(
+      "getSpanOfEnclosingComment",
       0,
       undefined,
     );
@@ -286,16 +317,23 @@ class Plugin implements ts.server.PluginModule {
       getDocumentHighlights,
       getEditsForFileRename,
       getEditsForRefactor,
+      getEncodedSyntacticClassifications,
+      getFileReferences,
       getImplementationAtPosition,
+      getJsxClosingTagAtPosition,
       getNameOrDottedNameSpan,
       getNavigateToItems,
       getNavigationBarItems,
+      getNavigationTree,
       getOutliningSpans,
       getQuickInfoAtPosition,
       getReferencesAtPosition,
+      getSemanticClassifications,
       getSemanticDiagnostics,
       getSignatureHelpItems,
+      getSpanOfEnclosingComment,
       getSuggestionDiagnostics,
+      getSyntacticClassifications,
       getSyntacticDiagnostics,
       getTodoComments,
       getTypeDefinitionAtPosition,
